@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Foo" Class="DataClasses1DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=DSK-SA-02934\SQLExpress;Initial Catalog=Foo;Integrated Security=True" SettingsObjectName="ConsoleApp5.Properties.Settings" SettingsPropertyName="FooConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.participants" Member="participants">
+    <Type Name="participant">
+      <Column Name="barcode" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="event_id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="participant_prereg_participant" Member="prereg_participants" ThisKey="barcode,event_id" OtherKey="barcode,event_id" Type="prereg_participant" />
+    </Type>
+  </Table>
+  <Table Name="dbo.prereg_participants" Member="prereg_participants">
+    <Type Name="prereg_participant">
+      <Column Name="barcode" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="event_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="participant_prereg_participant" Member="participant" ThisKey="barcode,event_id" OtherKey="barcode,event_id" Type="participant" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>
